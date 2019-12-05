@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles_register.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="Sign_up">
+    <div class="Reg_form">
+    <h2>Register your new account</h2>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <div class="Attr">
+            <!-- {{ form.username.label }}<br> -->
+            {{ form.username(size=40) }}<br>
+            {% for error in form.username.errors %}
+            <span class="error">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div class="Attr">
+            <!-- {{ form.email.label }}<br> -->
+            {{ form.email(size=40) }}<br>
+            <span class="error">{{ form.email.errors[form.email.errors|length - 1] }}</span>
+        </div>
+        <div class="Attr">
+            <!-- {{ form.password.label }}<br> -->
+            {{ form.password(size=40) }}<br>
+            {% for error in form.password.errors %}
+            <span class="error">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div class="Attr">
+            <!-- {{ form.password2.label }}<br> -->
+            {{ form.password2(size=40) }}<br>
+            {% for error in form.password2.errors %}
+            <span class="error">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <p>{{ form.submit() }}</p>
+    </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        {% if title %}
+            <title>{{ title }} - Pokémon Go</title>
+        {% else %}
+            <title>Pokémon Go</title>
+        {% endif %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles_base.css') }}">
+        {% block head %}{% endblock %}
+    </head>
+
+    <style>
+        .last, .foot_list {
+            {% if request.path=="/index" %}
+                font-size: 80%;
+            {% endif %}
+        }
+    </style>
+
+    <wrap>
+        <header>
+            <div class="logo-container">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Pokémon go logo" class="logo">  
+            </div>
+            {% if request.path!="/login" and request.path!="/register" %}
+                <nav class="main_nav">
+                    <div class="nav_item">
+                        <span class="nav-el"><a href="{{ url_for('index')}}">Home</a></span>
+                    </div>
+                    <div class="nav_item">
+                        <span class="nav-el"><a href="{{ url_for('database') }}">Database</a></span>
+                    </div>
+                    <div class="nav_item">
+                        <span class="nav-el"><a href="{{ url_for('support') }}">Support</a></span>
+                    </div>
+                </nav>
+            {% endif %}
+        </header>
+        {% block content %}{% endblock %}
+    </wrap>
+
+    <footer>
+        <div class="foot">
+        <div class="first">
+            <div class="social">
+                <a href="https://www.facebook.com/PokemonGO/"><img src="static/img/facebook.png" alt="Facebook" width="30"></a>
+                <a href="https://twitter.com/PokemonGoApp"><img src="static/img/twitter.png" alt="Twitter" width="30"></a>
+            </div>
+            <div class="gaming">
+                <a href="https://nianticlabs.com/"><img src="static/img/niantic.png" alt="Niantic" width="50"></a>
+                <a href="https://www.pokemon.com/us/"><img src="static/img/tpc.png" alt="Pokémon Go" width="140"></a>
+                <a href="https://www.nintendo.com/"><img src="static/img/nintendo.png" alt="Nintendo" width="90"></a>
+            </div>
+        </div>
+        <div class="last">
+            <nav class="foot_list">
+                <ul type="none">
+                    <li><a href="">Terms of Service </a> | </li>
+                    <li><a href=""> Privacy Policy </a> | </li>
+                    <li><a href=""> Copyright Policy </a> | </li>
+                    <li><a href=""> FAQ</a></li>
+                </ul>
+            </nav>
+            <p>
+                ©2019 Niantic, Inc. ©2019 Pokémon. ©1995-2019 Nintendo / Creatures Inc. / GAME FREAK inc.<br>
+                Pokémon and Pokémon character names are trademarks of Nintendo. During gameplay, please be aware of your surroundings and play safely.
+            </p>
+        </div>
+        </div>
+    </footer>
+</html>

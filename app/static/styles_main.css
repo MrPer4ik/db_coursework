@@ -1,0 +1,173 @@
+* {
+    font-family: "Roboto","Hiragino Kaku Gothic Pro","Meiryo","Gill Sans","Gill Sans MT",
+                "Myriad Pro","DejaVu Sans Condensed",Helvetica,Arial,sans-serif;
+    font-size: 20px;
+}
+
+wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    padding: 0 3% 2% 3%;
+}
+
+body {
+    margin: 0;
+}
+
+aside {
+    flex: 2 1;
+    height: 50%;
+    background-color: rgba(245, 240, 240, 0.699);
+    margin: 0;
+    border-radius: 5%;
+    padding: 1%;
+    align-items: center;
+}
+
+main{
+    flex: 4 3;
+}
+
+.board {
+    background-color: rgba(245, 240, 240, 0.699);
+    margin: 0 20px;
+    border-radius: 5%;
+}
+
+.pokeball_icon {
+    width: 50px;
+    height: 50px;
+    padding: 20px;
+}
+
+button:hover {
+    background: linear-gradient(to right, rgb(40, 255, 155), rgb(73, 177, 87));
+    font-weight: 700;
+}
+
+.Upd {
+    text-align: center;
+    margin: 20px;
+    padding: 20px 0 20px;
+    text-transform: uppercase;
+}
+
+.Upd a {
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+}
+
+.main_head {
+    vertical-align: middle;
+    display: flex;
+    flex-flow: row wrap;
+    height: 80px;
+}
+
+.table {
+    display: table;
+    margin: 0px 10px 10px;
+    padding: 10px;
+}
+
+.t_row {
+    display: table-row;
+}
+
+.t_row:hover {
+    font-weight: 900;
+}
+
+.t_cell {
+    display: table-cell;
+    padding: 0px 10px;
+}
+
+.get_it {
+    justify-content: space-around;
+    display: flex;
+    flex-flow: row wrap;
+    margin: 20px 0 0;
+}
+
+.get_img {
+    width: 170px;
+}
+
+.button_watch {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.button {
+    background: linear-gradient(to right, rgb(79, 255, 173), rgb(122, 236, 137));
+    border-radius: 50px;
+    line-height: 23px;
+    padding: 15px 50px;
+    color: white;
+    font-weight: 700;
+    font-size: 110%;
+}
+
+#eevee {
+    padding: 3%;
+    margin: 0 15%;
+}
+
+figure figurecaption {
+    font-weight: bold;
+    width: 100%;
+}
+
+.buttons {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+span a {
+    text-decoration: none;
+    color: black;
+}
+
+figure {
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+}
+
+
+
+
+.t_cell p::first-letter {
+    font-size: 120%;
+    font-weight: bolder;
+}
+
+@media screen and (max-width: 1024px) {
+    * {
+        font-size: 18px;
+    }
+
+    aside {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    * {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width : 480px) {
+    * {
+        font-size: 12px;
+    }
+
+    .logo {
+        width: 60%;
+        height: auto;
+    }
+}

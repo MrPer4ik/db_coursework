@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles_database.css') }}">
+{% endblock %}
+
+{% block content %}
+    
+        <div class="main">
+            <div class="form_sort">
+                <form action="" method="post">
+                    {{ form.hidden_tag() }}
+                    <p>{{ form.searchField }}</p>
+                    <p>{{ form.sortedField }}</p>
+                    <p>{{ form.filterField }}</p>
+                    <p>{{ form.submit() }}</p>
+                </form>
+            </div>      
+            <div class="holder">
+                {% for pokemon in data %}
+                    <div class="pok_card">
+                        <span class="pok_num">#{{ pokemon.pok_id }}</span>
+                        <img src="{{ url_for('static', filename='img/pokemon/' + pokemon.pok_id|string + '.png') }}" width="100px" alt="{{ pokemon.pok_name }}">
+                        <span class="pok_name">{{ pokemon.pok_name }}</span>
+                        <div class="pok_types">
+                            {% for type in types %}
+                                {% if pokemon.pok_id==type.pok_id %}
+                                    <span class="type_{{ type.type_name }}"> {{ type.type_name }} </span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="stats">
+                            <div class="stats_row1">
+                                <div class="stats_row1_">
+                                    <span class="stats_HP">HP</span>
+                                    <span class="stats_HP_">{{ pokemon.b_hp }}</span>
+                                </div>
+                                <div class="stats_row1_">
+                                    <span class="stats_ATK">ATK</span>
+                                    <span class="stats_ATK_">{{ pokemon.b_atk }}</span>
+                                </div>
+                                <div class="stats_row1_">
+                                    <span class="stats_DEF">DEF</span>
+                                    <span class="stats_DEF_">{{ pokemon.b_def }}</span>
+                                </div>
+                            </div>
+                            <div class="stats_row2">
+                                <div class="stats_row2_">
+                                    <span class="stats_SP_ATK">SP.ATK</span>
+                                    <span class="stats_SP_ATK_">{{ pokemon.b_sp_atk }}</span>
+                                </div>
+                                <div class="stats_row2_">
+                                    <span class="stats_SP_DEF">SP.DEF</span>
+                                    <span class="stats_SP_DEF_">{{ pokemon.b_sp_def }}</span>
+                                </div>
+                                <div class="stats_row2_">
+                                    <span class="stats_SPD">SPD</span>
+                                    <span class="stats_SPD_">{{ pokemon.b_speed }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% if prev_url %}
+        <a href="{{ prev_url }}">&lt---------</a>
+    {% endif %}
+    {% if next_url %}
+        <a href="{{ next_url }}">---------&gt</a>
+    {% endif %}
+{% endblock %}

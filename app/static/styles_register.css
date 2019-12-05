@@ -1,0 +1,42 @@
+.Sign_up {
+    font-size: 24px;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2% 3% 2%;
+    margin: 0 2%;
+}
+
+.Reg_form {
+    width: 50%;
+    background-color: rgba(245, 240, 240, 0.699);
+    border-radius: 15%;
+    text-align: center;
+}
+
+input {
+    font-size: 24px;
+    border-radius: 50px;
+    height: 50px;
+    margin: 2% 0;
+}
+
+.error {
+    display: block;
+    color: red;
+    font-size: 90%;
+    margin: 0;
+}
+
+input[type="submit"] {
+    width: 50%;
+    height: initial;
+    background: linear-gradient(to right, rgb(79, 255, 173), rgb(122, 236, 137));
+    border-radius: 50px;
+    line-height: 23px;
+    padding: 15px 50px;
+    color: white;
+    font-weight: 700;
+    font-size: 110%;
+}

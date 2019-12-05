@@ -1,0 +1,133 @@
+* {
+    font-family: "Roboto","Hiragino Kaku Gothic Pro","Meiryo","Gill Sans","Gill Sans MT",
+                "Myriad Pro","DejaVu Sans Condensed",Helvetica,Arial,sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+wrap {
+    background-image: url("img/bg.jpg");
+    background-size: cover;
+    display: block;
+}
+
+header {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1% 3% 2% 3%;
+}
+
+.logo-container {
+    height: 100px;
+    width: 210px;
+    padding: 20px 0;
+    float: left;
+}
+
+.logo {
+    width: 80%;
+}
+
+.main_nav{
+    height: 20px;
+    width: 400px;
+    padding: 1%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(245, 240, 240, 0.699);
+    border-radius: 15%;
+    margin: 0 6.5%;
+}
+
+
+.nav_item {
+    text-align: center;
+    vertical-align: 50%;
+    text-align: center;
+}
+
+.nav-el {
+    font-weight: 700;
+}
+
+body {
+    margin: 0;
+}
+
+footer {
+    width: 100%;
+    height: 50%;
+    padding: 5px 0;
+    background: linear-gradient(to right, rgb(79, 255, 173), rgb(122, 236, 137));
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.foot {
+    width: 75%;   
+}
+
+.first {
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+}
+
+.social {
+    width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+}
+
+.gaming {
+    width: 320px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.last {
+    display: flex;
+    text-align: center;
+    flex-flow: column wrap;
+    margin: 0;
+}
+
+.last p {
+    font-size: 90%;
+}
+
+
+ul[type=none]:nth-of-type(odd) li{
+    color:rgb(255, 255, 255);
+}
+
+ul[type=none]:nth-of-type(even) li{
+    font-size: 16px;
+}
+
+ul[type=none]:before{
+    content: '';
+    height: 1px;
+    width: 100%;
+    background-color:rgb(255, 255, 255);
+}
+
+ul[type=none]:before{
+    margin-bottom: 20px;
+}

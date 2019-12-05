@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles_main.css') }}">
+{% endblock %}
+
+{% block content %}
+    <body>  
+        <wrapper>
+            <main>
+                <div class="board">
+                    <div class="main_head">
+                        <div>
+                            <img src="static/img/pokeball.png" alt="Pokéball logo" class="pokeball_icon">
+                        </div>
+                        <div class="Upd"><a href="https://pokemongolive.com/en/post/">Updates</a></div>
+                    </div>
+                    <div class="table">
+                        <div class="t_row">
+                            <div class="t_cell"><b><time datetime="2019-11-01">11/1/19</time></b></div>
+                            <div class="t_cell"><p>Willow Report: Looming in the Shadows</p></div>
+                        </div>
+                        <div class="t_row">
+                            <div class="t_cell"><b><time datetime="2019-10-31">10/31/19</time></b></div>
+                            <div class="t_cell"><p>The first of a Legendary trio—Cobalion will be in five-star raids!</p></div>
+                        </div>
+                        <div class="t_row">
+                            <div class="t_cell"><b><time datetime="2019-10-31">10/31/19</time></b></div>
+                            <div class="t_cell"><p>A Research Breakthrough reward rotation is coming!</p></div>
+                        </div>
+                        <div class="t_row">
+                            <div class="t_cell" styles="visibility: hidden"></div>
+                            <div class="t_cell"><a href="https://pokemongolive.com/en/post/">Read more</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="get_it">
+                    <div class="badge">
+                        <a href="https://play.google.com/store/apps/details?id=com.nianticlabs.pokemongo"><img src="static/img/google-play-badge.png" alt="Get it on Google Play" class="get_img"></a>
+                    </div>
+                    <div class="badge">
+                        <a href="https://itunes.apple.com/us/app/pokemon-go/id1094591345?mt=8"><img src="static/img/appstore-badge.png" alt="Get it on AppStore" class="get_img"></a>
+                    </div>
+                </div>
+                <div class="button_watch">
+                    <button class="button" data-ak-youtubemodal-video-id="SWtDeeXtMZM">
+                        Watch trailer
+                    </button>
+                </div>
+            </main>
+            <aside>
+                <div class="greet_user">
+                    <p>You logged in as <b>{{ current_user.username }}</b></p>
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                </div>
+                <figure id="eevee">
+                    <img src="static/img/giphy.gif" alt="gif: eevee" width="250">
+                    <figcaption>Featured Pokémon Eevee</figcaption>
+                </figure>
+            </aside>
+    </body>
+{% endblock %}

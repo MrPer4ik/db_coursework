@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles_pok_details.css') }}">
+{% endblock %}
+
+{% block content %}
+    <p>{{ data }}</p>
+    <p>{{ types }}</p>
+    <p>{{ abilities }}</p>
+    <p>{{ not_eff }}</p>
+    <p>{{ eff }}</p>
+    <p>{{ sup_eff }}</p>
+    <img src="{{ url_for('static', filename='img/pokemon/' + data[0].pok_id|string + '.png') }}">
+{% endblock %}

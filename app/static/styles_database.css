@@ -1,0 +1,233 @@
+body {
+    overflow-x: hidden;
+}
+
+.main {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.holder {
+    width: 80%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.pok_card {
+    display: flex;
+    flex-flow: column wrap;
+    width: 200px;
+    background-color: rgba(245, 240, 240, 0.699);
+    border-radius: 15%;
+    align-items: center;
+    padding: 5px;
+    margin: 10px;
+}
+
+.pok_num {
+    display: block;
+}
+
+.pok_name {
+    font-size: 120%;
+}
+
+.pok_name::first-letter {
+    text-transform: uppercase;
+}
+
+.stats {
+    margin: 10px 0;
+    border-width: 2px;
+    border-color: rgb(70, 67, 67);
+    border-radius: 15%;
+}
+
+.stats_row1, .stats_row2 {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.form_sort {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 50%;
+    background-color: rgba(245, 240, 240, 0.699);
+    border-radius: 50px;
+}
+
+form {
+    text-align: center;
+    width: 100%;
+}
+
+#filterField {
+    list-style-type: none;
+    font-size: 20px;
+}
+
+.combobox {
+    width: 300px;
+    border-radius: 50px;
+    height: 40px;
+    font-size: 26px;
+}
+
+#searchField {
+    font-size: 26px;
+    width: 80%;
+    border-radius: 50px;
+    height: 40px;
+    margin: 2% 0;
+}
+
+input[type="submit"] {
+    width: 50%;
+    height: initial;
+    background: linear-gradient(to right, rgb(79, 255, 173), rgb(122, 236, 137));
+    border-radius: 50px;
+    line-height: 23px;
+    padding: 10px 50px;
+    color: white;
+    font-weight: 700;
+    font-size: 120%;
+}
+
+.stats_row1 span, .stats_row2 span {
+    display: block;
+    text-align: left;
+    font-size: 90%;  
+    flex: 1;
+    margin: 0 5px;
+}
+
+.pok_types {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 90%;
+}
+
+.pok_types span {
+    display: block;
+    border-radius: 15px;
+    text-transform: uppercase;
+    flex: 1;
+    text-align: center;
+    margin: 2px;
+}
+
+.type_grass {
+    background-color: rgb(39, 216, 116);
+    color: rgb(255, 255, 255);
+}
+
+.type_water {
+    background-color: rgb(61, 94, 240);
+    color: rgb(255, 255, 255);
+}
+
+.type_fire {
+    background-color: rgb(224, 128, 18);
+    color: rgb(255, 255, 255);
+}
+
+.type_electric {
+    background-color: rgb(245, 225, 50);
+    color: rgb(255, 255, 255);
+}
+
+.type_normal {
+    background-color: rgb(116, 116, 116);
+    color: rgb(255, 255, 255);
+}
+
+.type_psychic {
+    background-color: rgb(211, 73, 158);
+    color: rgb(255, 255, 255);
+}
+
+.type_dark {
+    background-color: rgb(29, 29, 29);
+    color: rgb(255, 255, 255);
+}
+
+.type_dragon {
+    background-color: rgb(138, 50, 221);
+    color: rgb(255, 255, 255);
+}
+
+.type_fighting {
+    background-color: rgb(189, 48, 48);
+    color: rgb(255, 255, 255);
+}
+
+.type_flying {
+    background-color: rgb(101, 189, 211);
+    color: rgb(255, 255, 255);
+}
+
+.type_poison {
+    background-color: rgb(122, 0, 179);
+    color: rgb(255, 255, 255);
+}
+
+.type_ground {
+    background-color: rgb(112, 49, 6);
+    color: rgb(255, 255, 255);
+}
+
+.type_fairy {
+    background-color: rgb(255, 8, 214);
+    color: rgb(255, 255, 255);
+}
+
+.type_rock {
+    background-color: rgb(90, 66, 50);
+    color: rgb(255, 255, 255);
+}
+
+.type_bug {
+    background-color: rgb(69, 150, 58);
+    color: rgb(255, 255, 255);
+}
+
+.type_steel {
+    background-color: rgb(122, 122, 122);
+    color: rgb(255, 255, 255);
+}
+
+.type_ghost {
+    background-color: rgb(68, 0, 124);
+    color: rgb(255, 255, 255);
+}
+
+.type_ice {
+    background-color: rgb(153, 240, 255);
+    color: rgb(255, 255, 255);
+}
+
+.stats_HP {
+    color: rgb(10, 183, 252);
+    font-weight: bold;
+}
+
+.stats_DEF, .stats_SP_DEF {
+    color: rgb(40, 185, 101);
+    font-weight: bold;
+}
+
+.stats_ATK, .stats_SP_ATK {
+    color: rgb(197, 50, 50);
+    font-weight: bold;
+}
+
+.stats_SPD {
+    color: rgb(214, 190, 52);
+    font-weight: bold;
+}
