@@ -231,3 +231,8 @@ input[type="submit"] {
     color: rgb(214, 190, 52);
     font-weight: bold;
 }
+
+a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}

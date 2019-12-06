@@ -18,6 +18,7 @@
             </div>      
             <div class="holder">
                 {% for pokemon in data %}
+                <a href="{{ url_for('pokemon', pok_id=pokemon.pok_id|string) }}">
                     <div class="pok_card">
                         <span class="pok_num">#{{ pokemon.pok_id }}</span>
                         <img src="{{ url_for('static', filename='img/pokemon/' + pokemon.pok_id|string + '.png') }}" width="100px" alt="{{ pokemon.pok_name }}">
@@ -60,6 +61,7 @@
                             </div>
                         </div>
                     </div>
+                </a>
                 {% endfor %}
             </div>
         </div>
