@@ -29,6 +29,12 @@ header {
     float: left;
 }
 
+span a {
+    text-decoration: none;
+    color: black;
+    font-size: 130%;
+}
+
 .logo {
     width: 80%;
 }
