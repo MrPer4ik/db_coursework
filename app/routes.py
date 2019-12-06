@@ -5,7 +5,8 @@ from werkzeug.urls import url_parse
 
 from app import app
 from app.forms import LoginForm, RegistrationForm, EditingQuery
-from app.models import Pokemon, User, BaseStats, PokTypes, Types, Abilities, PokAbilities, Type_efficacy, db
+from app.models import Pokemon, User, BaseStats, PokTypes, Types, \
+    Abilities, PokAbilities, Type_efficacy, PokEvolMatch, Habitats, db
 
 @app.route('/', methods=['GET'])
 @app.route('/index', methods=['GET'])
@@ -87,35 +88,40 @@ def pokemon(pok_id):
 
     types = Types.query.join(PokTypes, PokTypes.type_id==Types.type_id).join(Pokemon, Pokemon.pok_id==PokTypes.pok_id)\
         .add_columns(Types.type_name).filter(Pokemon.pok_id==pok_id).all()
-        
-    not_eff = db.session.execute(f'''
-        SELECT DISTINCT typ.type_name as NOT_EFF, eff.damage_factor as DAMAGE
-        FROM pokemon_types t JOIN type_efficacy eff ON (t.pok_id = eff.damage_type_id)
-	    JOIN types typ ON (eff.target_type_id = typ.type_id)
-        WHERE t.pok_id = {pok_id} and eff.damage_factor < 100
-    ''').fetchall()
 
-    eff = db.session.execute(f'''
-        SELECT DISTINCT typ.type_name as NOT_EFF, eff.damage_factor as DAMAGE
-        FROM pokemon_types t JOIN type_efficacy eff ON (t.pok_id = eff.damage_type_id)
-	    JOIN types typ ON (eff.target_type_id = typ.type_id)
-        WHERE t.pok_id = {pok_id} and eff.damage_factor = 100
+    effect = db.engine.execute(f'''
+        SELECT DISTINCT typ.type_name as EFF, eff.damage_factor as DAMAGE
+        FROM pokemon_types t JOIN type_efficacy eff ON (t.type_id = eff.damage_type_id)
+	        JOIN types typ ON (eff.target_type_id = typ.type_id)
+        WHERE t.pok_id = {pok_id} and t.slot = 1
     ''').fetchall()
-
-    sup_eff = db.session.execute(f'''
-        SELECT DISTINCT typ.type_name as NOT_EFF, eff.damage_factor as DAMAGE
-        FROM pokemon_types t JOIN type_efficacy eff ON (t.pok_id = eff.damage_type_id)
-	    JOIN types typ ON (eff.target_type_id = typ.type_id)
-        WHERE t.pok_id = {pok_id} and eff.damage_factor > 100
-    ''').fetchall()
-
-    #types.join(Type_efficacy, Type_efficacy.damage_type_id==Types.type_id)\
-    #    .join(Types, Types.type_id==Type_efficacy.target_type_id).add_columns(Type_efficacy.target_type_id).filter(Pokemon.pok_name==pok_name).all()
 
     abilities = Abilities.query.join(PokAbilities, PokAbilities.abil_id==Abilities.abil_id).join(Pokemon, Pokemon.pok_id==PokAbilities.pok_id)\
         .add_columns(Abilities.abil_name, PokAbilities.is_hidden).filter(Pokemon.pok_id==pok_id).all()
 
-    return render_template('pok_details.html', data=res.all(), types=types, abilities=abilities, not_eff=not_eff, eff=eff, sup_eff=sup_eff)
+    habitat_cap_rate = PokEvolMatch.query.join(Habitats, PokEvolMatch.hab_id==Habitats.hab_id).add_columns(Habitats.hab_name, Habitats.hab_descript)\
+        .filter(PokEvolMatch.pok_id==pok_id).all()
+
+    evolves_from = PokEvolMatch.query.join(Pokemon, Pokemon.pok_id==PokEvolMatch.pok_id).filter(PokEvolMatch.pok_id==pok_id).all()
+
+    evolves_from_from = db.engine.execute(f'''
+        SELECT b.evolves_from_species_id as PreEvol
+        FROM pokemon_evolution_matchup a JOIN pokemon_evolution_matchup b
+	        ON (a.evolves_from_species_id = b.pok_id)
+        WHERE a.pok_id = {pok_id}
+    ''').fetchall()
+
+    evolves_to = PokEvolMatch.query.filter(PokEvolMatch.evolves_from_species_id==pok_id).all()
+
+    evolves_to_to = db.engine.execute(f'''
+        SELECT b.pok_id as Post_evol
+        FROM pokemon_evolution_matchup a JOIN pokemon_evolution_matchup b
+	        ON (a.pok_id = b.evolves_from_species_id)
+        WHERE a.evolves_from_species_id = {pok_id}
+    ''').fetchall()
+
+    return render_template('pok_details.html', data=res.all(), types=types, abilities=abilities, effect=effect, habitat_cap_rate=habitat_cap_rate,\
+        evolves_from=evolves_from, evolves_from_from=evolves_from_from, evolves_to=evolves_to, evolves_to_to=evolves_to_to)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

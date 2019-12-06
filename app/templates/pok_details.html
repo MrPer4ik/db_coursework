@@ -5,11 +5,115 @@
 {% endblock %}
 
 {% block content %}
-    <p>{{ data }}</p>
-    <p>{{ types }}</p>
-    <p>{{ abilities }}</p>
-    <p>{{ not_eff }}</p>
-    <p>{{ eff }}</p>
-    <p>{{ sup_eff }}</p>
-    <img src="{{ url_for('static', filename='img/pokemon/' + data[0].pok_id|string + '.png') }}">
+    <div class="holder">
+        <div class="board">
+            <span class="pokedex">#{{ data[0].pok_id }}</span>
+            <img src="{{ url_for('static', filename='img/pokemon/' + data[0].pok_id|string + '.png') }}", width='30%'>
+            <span class="pok_name">{{ data[0].pok_name }}</span>
+            <div class="sizes">
+                <span>Height {{ data[0].pok_height/10 }} m</span>
+                <span>Weight {{ data[0].pok_weight/10 }} kg</span>
+            </div>
+            <div class="types">
+                {% for type in types %}
+                    <span class="type_{{ type.type_name }}">{{ type.type_name }}</span>
+                {% endfor %}
+            </div>
+            <div class="stats">
+                <div class="stats_names">
+                    <span class="HP">HP</span>
+                    <span class="ATK">ATK</span>
+                    <span class="DEF">DEF</span>
+                    <span class="SP_ATK">SP.ATK</span>
+                    <span class="SP_DEF">SP.DEF</span>
+                    <span class="SPD">SPD</span>
+                </div>
+                <div class="stats_values">
+                    <span class>{{ data[0].b_hp }}</span>
+                    <span class>{{ data[0].b_atk }}</span>
+                    <span class>{{ data[0].b_def }}</span>
+                    <span class>{{ data[0].b_sp_atk }}</span>
+                    <span class>{{ data[0].b_sp_def }}</span>
+                    <span class>{{ data[0].b_speed }}</span>
+                </div>
+            </div>
+            <h3>Abilities</h3>
+            <div class="abilities">
+                {% if abilities[0] != None %}
+                    <span><b>Basic ability:</b> {{ abilities[0].abil_name }}</span>
+                {% endif %}
+                {% if abilities|length != 1 %}
+                    <span><b>Hidden ability:</b> {{ abilities[1].abil_name }}</span>
+                {% endif %}
+            </div>
+
+            <h3 class="eff_label">Effectiveness against types</h3>
+            <div class="effect">
+                <div class="not_eff">
+                    <span class="head"><b>Not effective</b></span>
+                    {% for eff in effect %}
+                        {% if eff.DAMAGE < 100 %}
+                            <span class="type_{{ eff.EFF }}">{{ eff.EFF }}  x {{ eff.DAMAGE/100 }}</span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="eff">
+                    <span class="head"><b>Effective</b></span>
+                    {% for eff in effect %}
+                        {% if eff.DAMAGE == 100 %}
+                            <span class="type_{{ eff.EFF }}">{{ eff.EFF }}  x {{ eff.DAMAGE/100 }}</span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="sup_eff">
+                    <span class="head"><b>Very effective</b></span>
+                    {% for eff in effect %}
+                        {% if eff.DAMAGE > 100 %}
+                            <span class="type_{{ eff.EFF }}">{{ eff.EFF }}  x {{ eff.DAMAGE/100 }}</span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% if habitat_cap_rate|length != 0 %}
+                <h3>Habitat</h3>
+                <div class="habitat">
+                    <span class="hab_name">{{habitat_cap_rate[0].hab_name}}</span>
+                    <p class="descript">{{ habitat_cap_rate[0].hab_descript }}</p>
+                </div>
+            {% endif %}
+
+            <h3>Evolution chain</h3>
+            <div class="evolution">
+                {% if evolves_from_from|length != 0 %}
+                    {% if evolves_from_from[0].PreEvol != None %}
+                        <a href="{{ url_for('pokemon', pok_id=evolves_from_from[0].PreEvol|string) }}">
+                            <img src="{{ url_for('static', filename='img/pokemon/' + evolves_from_from[0].PreEvol|string + '.png') }}", width="100px">
+                        </a>
+                        <img src="{{ url_for('static', filename='img/arrow.png') }}", width="60px">
+                    {% endif %}
+                {% endif %}
+                {% if evolves_from|length != 0 %}
+                    {% if evolves_from[0].evolves_from_species_id != None %}
+                        <a href="{{ url_for('pokemon', pok_id=(evolves_from[0].evolves_from_species_id|string)) }}">
+                            <img src="{{ url_for('static', filename='img/pokemon/' + evolves_from[0].evolves_from_species_id|string + '.png') }}", width="100px">
+                        </a>
+                        <img src="{{ url_for('static', filename='img/arrow.png') }}", width="60px">
+                    {% endif %}
+                {% endif %}
+                <a href=""><img id="this_pok" src="{{ url_for('static', filename='img/pokemon/' + data[0].pok_id|string + '.png') }}", width="100px"></a>
+                {% if evolves_to|length != 0 %}
+                    <img src="{{ url_for('static', filename='img/arrow.png') }}", width="60px">
+                    <a href="{{ url_for('pokemon', pok_id=evolves_to[0].pok_id|string) }}">
+                        <img src="{{ url_for('static', filename='img/pokemon/' + evolves_to[0].pok_id|string + '.png') }}", width="100px">
+                    </a>
+                {% endif %}
+                {% if evolves_to_to|length != 0 %}
+                    <img src="{{ url_for('static', filename='img/arrow.png') }}", width="60px">
+                    <a href="{{ url_for('pokemon', pok_id=evolves_to_to[0].Post_evol|string) }}">
+                        <img src="{{ url_for('static', filename='img/pokemon/' + evolves_to_to[0].Post_evol|string + '.png') }}", width="100px">
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

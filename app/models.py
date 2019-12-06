@@ -85,3 +85,14 @@ class Type_efficacy(db.Model):
     def __repr__(self):
         return str({"type_damage": self.damage_type_id, "type_target": self.target_type_id, "efficacy": self.damage_factor})
 
+class PokEvolMatch(db.Model):
+    __table__ = db.Model.metadata.tables['ka7619.pokemon_evolution_matchup']
+
+    def __repr__(self):
+        return str({'pok_id': self.pok_id, 'hab_id': self.hab_id, 'catch_rate': self.capture_rate, 'evolve_from_id': self.evolves_from_species_id})
+
+class Habitats(db.Model):
+    __table__ = db.Model.metadata.tables['ka7619.pokemon_habitats']
+
+    def __repr__(self):
+        return str({'hab_id': self.hab_id, 'hab_name': self.hab_name})
