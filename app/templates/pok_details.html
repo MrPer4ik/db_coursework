@@ -8,6 +8,9 @@
     <div class="holder">
         <div class="board">
             <span class="pokedex">#{{ data[0].pok_id }}</span>
+            {% if fav_pokemon.pok_id == data[0].pok_id %}
+                <p class="buddy">Your buddy pokemon!</p>
+            {% endif %}
             <img src="{{ url_for('static', filename='img/pokemon/' + data[0].pok_id|string + '.png') }}", width='30%'>
             <span class="pok_name">{{ data[0].pok_name }}</span>
             <div class="sizes">
@@ -114,6 +117,12 @@
                     </a>
                 {% endif %}
             </div>
+            {% if fav_pokemon.pok_id != data[0].pok_id %}
+                <form action="" method="post">
+                    {{ form.hidden_tag() }}
+                    {{ form.submit() }}
+                </form>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

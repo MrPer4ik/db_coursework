@@ -5,7 +5,7 @@ from werkzeug.urls import url_parse
 
 
 from app import app
-from app.forms import LoginForm, RegistrationForm, EditingQuery
+from app.forms import LoginForm, RegistrationForm, EditingQuery, AddBuddy
 from app.models import Pokemon, User, BaseStats, PokTypes, Types, \
     Abilities, PokAbilities, Type_efficacy, PokEvolMatch, Habitats, db
 
@@ -13,7 +13,9 @@ from app.models import Pokemon, User, BaseStats, PokTypes, Types, \
 @app.route('/index', methods=['GET'])
 @login_required
 def index():
-    return render_template('index.html')
+    fav_pokemon = User.query.join(Pokemon, Pokemon.pok_id == User.pok_id)\
+        .add_columns(Pokemon.pok_name, Pokemon.pok_id).filter(User.id == current_user.id).first()
+    return render_template('index.html', fav_pokemon=fav_pokemon)
 
 @app.route('/support', methods=['GET', 'POST'])
 @login_required
@@ -71,9 +73,17 @@ def database():
     return render_template('database.html', data=res.items, next_url=next_url, prev_url=prev_url, types=types.all(), form=form, pagination=pagination)
 
 
-@app.route('/pokemon/<pok_id>')
+@app.route('/pokemon/<pok_id>', methods=['GET', 'POST'])
 @login_required
 def pokemon(pok_id):
+    fav_pokemon = User.query.filter(User.id == current_user.id).first()
+
+    form = AddBuddy()
+    if form.validate_on_submit():
+        fav_pokemon.pok_id = pok_id
+        db.session.commit()
+        return redirect(url_for('index'))
+
     res = Pokemon.query.join(BaseStats, Pokemon.pok_id==BaseStats.pok_id).filter(Pokemon.pok_id == pok_id)\
         .add_columns(Pokemon.pok_id, Pokemon.pok_name, Pokemon.pok_height, Pokemon.pok_weight, BaseStats.b_hp, BaseStats.b_atk,\
         BaseStats.b_def, BaseStats.b_sp_atk, BaseStats.b_sp_def, BaseStats.b_speed)
@@ -113,7 +123,7 @@ def pokemon(pok_id):
     ''').fetchall()
 
     return render_template('pok_details.html', data=res.all(), types=types, abilities=abilities, effect=effect, habitat_cap_rate=habitat_cap_rate,\
-        evolves_from=evolves_from, evolves_from_from=evolves_from_from, evolves_to=evolves_to, evolves_to_to=evolves_to_to)
+        evolves_from=evolves_from, evolves_from_from=evolves_from_from, evolves_to=evolves_to, evolves_to_to=evolves_to_to, form=form, fav_pokemon=fav_pokemon)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

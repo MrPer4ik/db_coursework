@@ -36,5 +36,8 @@ class EditingQuery(FlaskForm):
             ('base_stats.b_def', 'DEF'), ('base_stats.b_sp_atk', 'SP.ATK'), ('base_stats.b_sp_def', 'SP.DEF'), ('base_stats.b_speed', 'SPD')]
     searchField = StringField('Search', render_kw={"placeholder": "   Search..."})
     sortedField = SelectField('Select sorted field', choices = choices, validators = [DataRequired()], default='pokemon.pok_id', render_kw={"class": "combobox"})
-    filterField = RadioField('Label', choices=[('asc', 'Ascending'), ('desc', 'Descending')], render_kw={"class": "radio"})
+    filterField = RadioField('Label', choices=[('asc', 'Ascending'), ('desc', 'Descending')], default="asc", render_kw={"class": "radio"})
     submit = SubmitField('Accept')
+
+class AddBuddy(FlaskForm):
+    submit = SubmitField("Make this pokemon your buddy")

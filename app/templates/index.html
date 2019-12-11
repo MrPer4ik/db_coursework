@@ -53,10 +53,20 @@
                     <p>You logged in as <b>{{ current_user.username }}</b></p>
                     <a href="{{ url_for('logout') }}">Logout</a>
                 </div>
-                <figure id="eevee">
-                    <img src="static/img/giphy.gif" alt="gif: eevee" width="250">
-                    <figcaption>Featured Pokémon Eevee</figcaption>
-                </figure>
+                {% if fav_pokemon %}
+                    <p>Your buddy pokemon <span class="pok_name">{{ fav_pokemon.pok_name }}</span> is waiting for you!</p>
+                    <div class="pok_img">
+                        <a href="{{ url_for('pokemon', pok_id=fav_pokemon.pok_id|string) }}">
+                            <img class="fav_pok" src="{{ url_for('static', filename='img/pokemon/' + fav_pokemon.pok_id|string + '.png') }}" width="300px">
+                        </a>
+                    </div>
+                {% else %}
+                    <figure id="eevee">
+                        <img src="static/img/giphy.gif" alt="gif: eevee" width="250">
+                        <figcaption>Featured Pokémon Eevee</figcaption>
+                    </figure>
+                    <p>Haven`t got a buddy pokemon yet? Look for new one in <a href="{{ url_for('database') }}">our database</a>!</p>
+                {% endif %}
             </aside>
     </body>
 {% endblock %}
