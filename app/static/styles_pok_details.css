@@ -261,3 +261,14 @@ h3 {
     border-color: rgb(245, 181, 6);
     padding: 8px;
 }
+
+.pok_img {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+.pok_img:hover {
+	-webkit-transform: scale(1.3);
+	transform: scale(1.3);
+}

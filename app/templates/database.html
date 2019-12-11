@@ -66,10 +66,25 @@
             </div>
         </div>
     </div>
-    {% if prev_url %}
-        <a href="{{ prev_url }}">&lt---------</a>
+    {% if pagination.links|length != 0 %}
+        <div class="foot_main">
+            <div class="pagg">
+                {{ pagination.links }}
+            </div>
+        </div>
+    {% else %}
+        {% if prev_url or next_url %}
+        <div class="foot_nav">
+            <div class="navigation">
+                {% if prev_url %}
+                    <a href="{{ prev_url }}">&lt---------</a>
+                {% endif %}
+                {% if next_url %}
+                    <a href="{{ next_url }}">---------&gt</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
     {% endif %}
-    {% if next_url %}
-        <a href="{{ next_url }}">---------&gt</a>
-    {% endif %}
+        
 {% endblock %}

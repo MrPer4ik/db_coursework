@@ -87,7 +87,7 @@
                 {% if evolves_from_from|length != 0 %}
                     {% if evolves_from_from[0].PreEvol != None %}
                         <a href="{{ url_for('pokemon', pok_id=evolves_from_from[0].PreEvol|string) }}">
-                            <img src="{{ url_for('static', filename='img/pokemon/' + evolves_from_from[0].PreEvol|string + '.png') }}", width="100px">
+                            <img class="pok_img" src="{{ url_for('static', filename='img/pokemon/' + evolves_from_from[0].PreEvol|string + '.png') }}", width="100px">
                         </a>
                         <img src="{{ url_for('static', filename='img/arrow.png') }}", width="60px">
                     {% endif %}
@@ -95,22 +95,22 @@
                 {% if evolves_from|length != 0 %}
                     {% if evolves_from[0].evolves_from_species_id != None %}
                         <a href="{{ url_for('pokemon', pok_id=(evolves_from[0].evolves_from_species_id|string)) }}">
-                            <img src="{{ url_for('static', filename='img/pokemon/' + evolves_from[0].evolves_from_species_id|string + '.png') }}", width="100px">
+                            <img class="pok_img" src="{{ url_for('static', filename='img/pokemon/' + evolves_from[0].evolves_from_species_id|string + '.png') }}", width="100px">
                         </a>
                         <img src="{{ url_for('static', filename='img/arrow.png') }}", width="60px">
                     {% endif %}
                 {% endif %}
-                <a href=""><img id="this_pok" src="{{ url_for('static', filename='img/pokemon/' + data[0].pok_id|string + '.png') }}", width="100px"></a>
+                <a href=""><img class="pok_img" id="this_pok" src="{{ url_for('static', filename='img/pokemon/' + data[0].pok_id|string + '.png') }}", width="100px"></a>
                 {% if evolves_to|length != 0 %}
                     <img src="{{ url_for('static', filename='img/arrow.png') }}", width="60px">
                     <a href="{{ url_for('pokemon', pok_id=evolves_to[0].pok_id|string) }}">
-                        <img src="{{ url_for('static', filename='img/pokemon/' + evolves_to[0].pok_id|string + '.png') }}", width="100px">
+                        <img class="pok_img" src="{{ url_for('static', filename='img/pokemon/' + evolves_to[0].pok_id|string + '.png') }}", width="100px">
                     </a>
                 {% endif %}
                 {% if evolves_to_to|length != 0 %}
                     <img src="{{ url_for('static', filename='img/arrow.png') }}", width="60px">
                     <a href="{{ url_for('pokemon', pok_id=evolves_to_to[0].Post_evol|string) }}">
-                        <img src="{{ url_for('static', filename='img/pokemon/' + evolves_to_to[0].Post_evol|string + '.png') }}", width="100px">
+                        <img class="pok_img" src="{{ url_for('static', filename='img/pokemon/' + evolves_to_to[0].Post_evol|string + '.png') }}", width="100px">
                     </a>
                 {% endif %}
             </div>

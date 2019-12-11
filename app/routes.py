@@ -1,5 +1,6 @@
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
+from flask_paginate import Pagination
 from werkzeug.urls import url_parse
 
 
@@ -33,7 +34,7 @@ def database():
 
     form = EditingQuery()
 
-    if filt is None and form.filterField.data is None:
+    if filt is None and form.filterField.data == "":
         filt = 'desc'
 
     sort = form.sortedField.data if len(sort)==0 else sort
@@ -43,6 +44,9 @@ def database():
     if request.method == "POST":
         if form.sortedField.data != sort or form.searchField.data != search or form.filterField.data != filt:
             page = 1
+            sort = form.sortedField.data
+            search = form.searchField.data
+            filt = form.filterField.data
         res = res.order_by(form.sortedField.data + (f' {form.filterField.data}' if form.filterField.data is not None else ''))
         if form.searchField.data is not None:
             res = res.filter(Pokemon.pok_name.startswith(form.searchField.data))
@@ -50,6 +54,8 @@ def database():
         res = res.order_by(sort + (f' {filt}' if filt is not None else ''))
         if search is not None:
             res = res.filter(Pokemon.pok_name.startswith(search))
+
+    pagination = Pagination(page=page, per_page=app.config['CARDS_PER_PAGE'], css_framework='foundation', total=res.count(), sort=form.sortedField.data, filt_by=form.filterField.data, search=form.searchField.data)
     
     res = res.paginate(page, app.config['CARDS_PER_PAGE'], False)
 
@@ -62,23 +68,9 @@ def database():
     next_url = url_for('database', page=res.next_num, sort=form.sortedField.data, filt_by=form.filterField.data, search=form.searchField.data) if res.has_next else None
     prev_url = url_for('database', page=res.prev_num, sort=form.sortedField.data, filt_by=form.filterField.data, search=form.searchField.data) if res.has_prev else None
     
-    return render_template('database.html', data=res.items, next_url=next_url, prev_url=prev_url, types=types.all(), form=form)
+    return render_template('database.html', data=res.items, next_url=next_url, prev_url=prev_url, types=types.all(), form=form, pagination=pagination)
 
-'''
-    #pokemon
-    name
-    height
-    weight
-    types
-    stats * 6
-    abilities (basic, hidden)
-    weak to
-    immune to
-    resistant to
-    habitat
-    catch rate
-    evolutions **
-'''
+
 @app.route('/pokemon/<pok_id>')
 @login_required
 def pokemon(pok_id):
