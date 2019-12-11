@@ -11,8 +11,10 @@
                 <form action="" method="post">
                     {{ form.hidden_tag() }}
                     <p>{{ form.searchField }}</p>
-                    <p>{{ form.sortedField }}</p>
-                    <p>{{ form.filterField }}</p>
+                    <div class="sorting">
+                        {{ form.sortedField }}
+                        {{ form.filterField }}
+                    </div>
                     <p>{{ form.submit() }}</p>
                 </form>
             </div>      

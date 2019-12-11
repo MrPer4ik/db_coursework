@@ -72,11 +72,24 @@ form {
     font-size: 20px;
 }
 
+.sorting {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.radio {
+    margin: 0;
+    text-align: left;
+    font-size: 110%;
+    padding: 0;
+}
+
 .combobox {
     width: 300px;
     border-radius: 50px;
     height: 40px;
-    font-size: 26px;
+    font-size: 24px;
 }
 
 #searchField {
@@ -88,7 +101,7 @@ form {
 }
 
 input[type="submit"] {
-    width: 50%;
+    width: 40%;
     height: initial;
     background: linear-gradient(to right, rgb(79, 255, 173), rgb(122, 236, 137));
     border-radius: 50px;
@@ -96,7 +109,7 @@ input[type="submit"] {
     padding: 10px 50px;
     color: white;
     font-weight: 700;
-    font-size: 120%;
+    font-size: 140%;
 }
 
 .stats_row1 span, .stats_row2 span {
