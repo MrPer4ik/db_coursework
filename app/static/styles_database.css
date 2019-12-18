@@ -60,6 +60,7 @@ body {
     width: 50%;
     background-color: rgba(245, 240, 240, 0.699);
     border-radius: 50px;
+    margin-bottom: 20px;
 }
 
 form {

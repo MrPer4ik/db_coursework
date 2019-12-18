@@ -34,9 +34,10 @@ def database():
         .add_columns(Pokemon.pok_id, Pokemon.pok_name, BaseStats.b_hp, BaseStats.b_atk,\
         BaseStats.b_def, BaseStats.b_sp_atk, BaseStats.b_sp_def, BaseStats.b_speed)
 
+    # form = request.form if request.method == "POST" else EditingQuery()
     form = EditingQuery()
 
-    if filt is None and form.filterField.data == "":
+    if filt is None and form.filterField.data is None:
         filt = 'desc'
 
     sort = form.sortedField.data if len(sort)==0 else sort
@@ -46,9 +47,6 @@ def database():
     if request.method == "POST":
         if form.sortedField.data != sort or form.searchField.data != search or form.filterField.data != filt:
             page = 1
-            sort = form.sortedField.data
-            search = form.searchField.data
-            filt = form.filterField.data
         res = res.order_by(form.sortedField.data + (f' {form.filterField.data}' if form.filterField.data is not None else ''))
         if form.searchField.data is not None:
             res = res.filter(Pokemon.pok_name.startswith(form.searchField.data))
@@ -57,8 +55,10 @@ def database():
         if search is not None:
             res = res.filter(Pokemon.pok_name.startswith(search))
 
-    pagination = Pagination(page=page, per_page=app.config['CARDS_PER_PAGE'], css_framework='foundation', total=res.count(), sort=form.sortedField.data, filt_by=form.filterField.data, search=form.searchField.data)
-    
+
+    pagination = Pagination(page=page,  sort=form.sortedField.data, filt_by=form.filterField.data, search=form.searchField.data,\
+         per_page=app.config['CARDS_PER_PAGE'], css_framework='foundation', total=res.count())
+
     res = res.paginate(page, app.config['CARDS_PER_PAGE'], False)
 
     types = Pokemon.query.join(PokTypes, Pokemon.pok_id==PokTypes.pok_id).\
@@ -69,7 +69,7 @@ def database():
     form.searchField.data = form.searchField.data if request.method=="POST" else search
     next_url = url_for('database', page=res.next_num, sort=form.sortedField.data, filt_by=form.filterField.data, search=form.searchField.data) if res.has_next else None
     prev_url = url_for('database', page=res.prev_num, sort=form.sortedField.data, filt_by=form.filterField.data, search=form.searchField.data) if res.has_prev else None
-    
+
     return render_template('database.html', data=res.items, next_url=next_url, prev_url=prev_url, types=types.all(), form=form, pagination=pagination)
 
 
