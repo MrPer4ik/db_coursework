@@ -1,1 +1,1 @@
-web: gunicorn dbcoursework:app
+web: gunicorn app:app
