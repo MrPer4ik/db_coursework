@@ -16,6 +16,7 @@ Flask-Migrate==2.1.1
 Flask-Moment==0.5.2
 Flask-SQLAlchemy==2.3.2
 Flask-WTF==0.14.2
+flask-paginate==0.5.5
 guess_language-spirit==0.5.3
 idna==2.6
 itsdangerous==0.24
