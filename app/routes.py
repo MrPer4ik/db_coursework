@@ -15,12 +15,12 @@ from app.models import Pokemon, User, BaseStats, PokTypes, Types, \
 def index():
     fav_pokemon = User.query.join(Pokemon, Pokemon.pok_id == User.pok_id)\
         .add_columns(Pokemon.pok_name, Pokemon.pok_id).filter(User.id == current_user.id).first()
-    return render_template('index.html', fav_pokemon=fav_pokemon)
+    return render_template('index.html', fav_pokemon=fav_pokemon, title="Home")
 
 @app.route('/support', methods=['GET', 'POST'])
 @login_required
 def support():
-    return render_template('support.html')
+    return render_template('support.html', title="Support")
 
 @app.route('/database',  strict_slashes=False, methods=['GET', 'POST'])
 @login_required
@@ -70,7 +70,7 @@ def database():
     next_url = url_for('database', page=res.next_num, sort=form.sortedField.data, filt_by=form.filterField.data, search=form.searchField.data) if res.has_next else None
     prev_url = url_for('database', page=res.prev_num, sort=form.sortedField.data, filt_by=form.filterField.data, search=form.searchField.data) if res.has_prev else None
 
-    return render_template('database.html', data=res.items, next_url=next_url, prev_url=prev_url, types=types.all(), form=form, pagination=pagination)
+    return render_template('database.html', data=res.items, next_url=next_url, prev_url=prev_url, types=types.all(), form=form, pagination=pagination, title="Database")
 
 
 @app.route('/pokemon/<pok_id>', methods=['GET', 'POST'])
@@ -86,7 +86,7 @@ def pokemon(pok_id):
 
     res = Pokemon.query.join(BaseStats, Pokemon.pok_id==BaseStats.pok_id).filter(Pokemon.pok_id == pok_id)\
         .add_columns(Pokemon.pok_id, Pokemon.pok_name, Pokemon.pok_height, Pokemon.pok_weight, BaseStats.b_hp, BaseStats.b_atk,\
-        BaseStats.b_def, BaseStats.b_sp_atk, BaseStats.b_sp_def, BaseStats.b_speed)
+        BaseStats.b_def, BaseStats.b_sp_atk, BaseStats.b_sp_def, BaseStats.b_speed).first()
 
     types = Types.query.join(PokTypes, PokTypes.type_id==Types.type_id).join(Pokemon, Pokemon.pok_id==PokTypes.pok_id)\
         .add_columns(Types.type_name).filter(Pokemon.pok_id==pok_id).all()
@@ -122,8 +122,8 @@ def pokemon(pok_id):
         WHERE a.evolves_from_species_id = {pok_id}
     ''').fetchall()
 
-    return render_template('pok_details.html', data=res.all(), types=types, abilities=abilities, effect=effect, habitat_cap_rate=habitat_cap_rate,\
-        evolves_from=evolves_from, evolves_from_from=evolves_from_from, evolves_to=evolves_to, evolves_to_to=evolves_to_to, form=form, fav_pokemon=fav_pokemon)
+    return render_template('pok_details.html', data=res, types=types, abilities=abilities, effect=effect, habitat_cap_rate=habitat_cap_rate,\
+        evolves_from=evolves_from, evolves_from_from=evolves_from_from, evolves_to=evolves_to, evolves_to_to=evolves_to_to, form=form, fav_pokemon=fav_pokemon, title=res.pok_name.capitalize())
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

@@ -13,18 +13,10 @@
         {% block head %}{% endblock %}
     </head>
 
-    <!-- <style>
-        .last, .foot_list {
-            {% if request.path=="/index" %}
-                font-size: 80%;
-            {% endif %}
-        }
-    </style> -->
-
     <wrap>
         <header>
             <div class="logo-container">
-                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Pokémon go logo" class="logo">  
+                <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="Pokémon go logo" class="logo"></a>
             </div>
             {% if request.path!="/login" and request.path!="/register" %}
                 <nav class="main_nav">
