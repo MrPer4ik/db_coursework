@@ -2,6 +2,7 @@
 
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='styles_main.css') }}">
+<script src="{{ url_for('static', filename='scripts/slider.js') }}"></script>
 {% endblock %}
 
 {% block content %}
@@ -68,5 +69,17 @@
                     <p>Haven`t got a buddy pokemon yet? Look for new one in <a href="{{ url_for('database') }}">our database</a>!</p>
                 {% endif %}
             </aside>
+        </wrapper>
+        <slider>
+            <div id="slides">
+                <img src="{{ url_for('static', filename='img/slides/1.jpg') }}" class="show slide">
+                <img src="{{ url_for('static', filename='img/slides/2.jpg') }}" class="slide">
+                <img src="{{ url_for('static', filename='img/slides/3.jpg') }}" class="slide">
+                <img src="{{ url_for('static', filename='img/slides/4.jpg') }}" class="slide">
+                <img src="{{ url_for('static', filename='img/slides/5.jpg') }}" class="slide">
+                <img src="{{ url_for('static', filename='img/slides/6.jpg') }}" class="slide">
+            </div>
+        </slider>
+        <div class="space"></div>
     </body>
 {% endblock %}

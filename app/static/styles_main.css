@@ -10,6 +10,10 @@ body {
     margin: 0;
 }
 
+slider {
+    display: none;
+}
+
 aside {
     flex: 2 1;
     height: 50%;
@@ -146,6 +150,10 @@ figure {
     .nav_el {
         font-size: 80%;
     }
+
+    slider {
+        height: 400px;
+    }
 }
 
 @media only screen and (max-width: 768px) {
@@ -159,6 +167,10 @@ figure {
 
     .nav_el {
         font-size: 60%;
+    }
+
+    slider {
+        height: 200px;
     }
 }
 
@@ -178,6 +190,10 @@ figure {
 
     .nav_el {
         font-size: 40%;
+    }
+
+    slider {
+        height: 100px;
     }
 }
 
@@ -200,4 +216,37 @@ figure {
 .pok_img {
     display: flex;
     justify-content: center;
+}
+
+#slides {
+    margin: 0 10%;
+    position: relative;
+    height: 500px;
+    width: 80%;
+    display: flex;
+}
+ 
+.slide {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 1;
+ 
+    -webkit-transition: opacity 1s;
+    -moz-transition: opacity 1s;
+    -o-transition: opacity 1s;
+    transition: opacity 1s;
+}
+ 
+.show {
+    opacity: 1;
+    z-index: 2;
+    border-radius: 30px;
+}
+
+.space {
+    height: 20px;
 }
