@@ -352,3 +352,94 @@ a {
     justify-content: center;
     padding: 20px;
 }
+
+@media only screen and (max-width: 1024px) {
+    * {
+        font-size: 16px;
+    }
+
+    .main_nav {
+        width: 300px;
+    }
+
+    .nav_el {
+        font-size: 60%;
+    }
+
+    .form_sort {
+        width: 75%;
+    }
+
+    #searchField, #sortedField {
+        font-size: 20px;
+        width: 50%;
+    }
+
+    #searchField {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width : 768px) {
+    * {
+        font-size: 12px;
+    }
+
+    .logo {
+        width: 60%;
+        height: auto;
+    }
+
+    .nav_el {
+        font-size: 40%;
+    }
+
+    .holder {
+        width: 80%;
+    }
+
+    .pok_card {
+        width: 180px;
+    }
+
+    .foot_main {
+        justify-content: center;
+    }
+
+    .pagg {
+        width: 80%;
+        margin: 0 10%;
+    }
+
+    .form_sort {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width : 512px) {
+    * {
+        font-size: 10px;
+    }
+
+    .nav_el {
+        font-size: 30%;
+    }
+
+    .holder {
+        width: 90%;
+    }
+
+    .pok_card {
+        width: 150px;
+    }
+
+    .pagg {
+        width: 100%;
+        margin: 0.5%;
+    }
+
+    input[type="submit"] {
+        text-align: center;
+        padding: 0;
+    }
+}

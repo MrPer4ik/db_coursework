@@ -289,3 +289,76 @@ input[type="submit"] {
     font-size: 110%;
     margin-bottom: 20px;
 }
+
+@media screen and (max-width: 1300px) {
+    * {
+        font-size: 16px;
+    }
+
+    .nav_el {
+        font-size: 80%;
+    }
+
+    .pok_img {
+        width: 100px;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    * {
+        font-size: 14px;
+    }
+
+    .main_nav {
+        width: 300px;
+    }
+
+    .nav_el {
+        font-size: 60%;
+    }
+
+    .board {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width : 768px) {
+    * {
+        font-size: 12px;
+    }
+
+    .logo {
+        width: 60%;
+        height: auto;
+    }
+
+    .nav_el {
+        font-size: 40%;
+    }
+
+    .board {
+        width: 80%;
+    }
+
+    .pok_img {
+        width: 80px;
+    }
+}
+
+@media only screen and (max-width : 512px) {
+    * {
+        font-size: 10px;
+    }
+
+    .nav_el {
+        font-size: 30%;
+    }
+
+    .board {
+        width: 90%;
+    }
+
+    .pok_img {
+        width: 60px;
+    }
+}

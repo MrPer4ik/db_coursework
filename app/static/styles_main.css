@@ -71,10 +71,6 @@ button:hover {
     display: table-row;
 }
 
-.t_row:hover {
-    font-weight: 900;
-}
-
 .t_cell {
     display: table-cell;
     padding: 0px 10px;
@@ -133,9 +129,6 @@ figure {
     flex-flow: column;
 }
 
-
-
-
 .t_cell p::first-letter {
     font-size: 120%;
     font-weight: bolder;
@@ -149,11 +142,23 @@ figure {
     aside {
         display: none;
     }
+
+    .nav_el {
+        font-size: 80%;
+    }
 }
 
 @media only screen and (max-width: 768px) {
     * {
         font-size: 16px;
+    }
+
+    .main_nav {
+        width: 300px;
+    }
+
+    .nav_el {
+        font-size: 60%;
     }
 }
 
@@ -165,6 +170,14 @@ figure {
     .logo {
         width: 60%;
         height: auto;
+    }
+
+    .main_nav {
+        width: 300px;
+    }
+
+    .nav_el {
+        font-size: 40%;
     }
 }
 

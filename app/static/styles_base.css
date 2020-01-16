@@ -5,6 +5,7 @@
 
 body {
     overflow-x: hidden;
+    min-width: 360px;
 }
 
 wrap {
@@ -41,7 +42,7 @@ span a {
 
 .main_nav{
     height: 20px;
-    width: 400px;
+    width: 35%;
     padding: 1%;
     display: flex;
     justify-content: space-around;
