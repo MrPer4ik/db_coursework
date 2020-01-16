@@ -19,7 +19,7 @@ body {
 .pok_card {
     display: flex;
     flex-flow: column wrap;
-    width: 200px;
+    width: 220px;
     background-color: rgba(245, 240, 240, 0.699);
     border-radius: 15%;
     align-items: center;

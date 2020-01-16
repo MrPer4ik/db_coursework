@@ -47,7 +47,7 @@ span a {
     justify-content: space-around;
     align-items: center;
     background-color: rgba(245, 240, 240, 0.699);
-    border-radius: 15%;
+    border-radius: 15px;
     margin: 0 6.5%;
 }
 
