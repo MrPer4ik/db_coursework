@@ -20,14 +20,12 @@
         <form action="" method="post" novalidate>
             {{ form.hidden_tag() }}
             <div class="Username">
-                <!-- {{ form.username.label }}<br> -->
                 {{ form.username(size=32) }}
                 {% for error in form.username.errors %}
                 <span class="error">[{{ error }}]</span>
                 {% endfor %}
             </div>
             <div class="Password">
-                <!-- {{ form.password.label }}<br> -->
                 {{ form.password(size=32) }}
                 {% for error in form.password.errors %}
                 <span class="error">[{{ error }}]</span>

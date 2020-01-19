@@ -93,3 +93,64 @@ input[type="submit"] {
 .checkbox:focus + label:before {
 	box-shadow: inset 0 2px 3px rgba(0,0,0,.2), 0 0 0 3px rgba(255,255,0,.7);
 }
+
+@media screen and (max-width: 1024px) {
+    * {
+        font-size: 18px;
+    }
+
+    .nav_el {
+        font-size: 80%;
+    }
+
+    #username, #password {
+        width: 90%;
+    }  
+    
+    #submit {
+        padding: 0;
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    * {
+        font-size: 16px;
+    }
+
+    .main_nav {
+        width: 300px;
+    }
+
+    .nav_el {
+        font-size: 60%;
+    }
+
+    #username, #password {
+        font-size: 16px;
+        height: 10%;
+    }
+    
+    #remember_me {
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width : 480px) {
+    * {
+        font-size: 12px;
+    }
+
+    .logo {
+        width: 60%;
+        height: auto;
+    }
+
+    .main_nav {
+        width: 300px;
+    }
+
+    .nav_el {
+        font-size: 40%;
+    }
+}
